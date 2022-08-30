@@ -44,6 +44,7 @@ public class ChessGameApplication {
         int pieceTwo = chessBoard.board[rowTwoNum][colTwoNum];
         chessBoard.board[rowOneNum][colOneNum] = pieceTwo;
         chessBoard.board[rowTwoNum][colTwoNum] = pieceOne;
+        System.out.println(String.format("r1: %s, c1: %s, r2: %s, c2: %s", rowOneNum, colOneNum, rowTwoNum, colTwoNum));
         return Arrays.deepToString(chessBoard.board);
     }
 }
