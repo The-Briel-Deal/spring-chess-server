@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -34,7 +35,7 @@ public class ChessGameApplication {
         return Arrays.deepToString(chessBoard.board);
     }
 
-    @GetMapping("/swapPiece")
+    @PostMapping("/swapPiece")
     public String swapPiece(@RequestParam(value = "rowOne", defaultValue = "0") String rowOne,
                             @RequestParam(value = "colOne", defaultValue = "0") String colOne,
                             @RequestParam(value = "rowTwo", defaultValue = "0") String rowTwo,
@@ -48,7 +49,9 @@ public class ChessGameApplication {
         int pieceTwo = chessBoard.board[rowTwoNum][colTwoNum];
         chessBoard.board[rowOneNum][colOneNum] = pieceTwo;
         chessBoard.board[rowTwoNum][colTwoNum] = pieceOne;
+        System.out.println(String.format("colOne: %s\nrowOne: %s\ncolTwo: %s\nrowTwo: %s\n", colOne, rowOne, colTwo, rowTwo));
 
+        System.out.println(String.format("Hit, %s, %s", Integer.toString(pieceTwo), Integer.toString(pieceOne)));
         return Arrays.deepToString(chessBoard.board);
     }
 }
