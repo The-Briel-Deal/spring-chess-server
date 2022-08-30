@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+
+
 @SpringBootApplication
 @RestController
 public class ChessGameApplication {
@@ -12,8 +15,9 @@ public class ChessGameApplication {
         SpringApplication.run(ChessGameApplication.class, args);
     }
 
-    @GetMapping("/hello")
+    @GetMapping("/getBoard")
     public String hello() {
-        return "Hello World!";
+        ChessBoard chessBoard = ChessBoard.getInstance();
+        return Arrays.deepToString(chessBoard.board);
     }
 }
