@@ -35,12 +35,20 @@ public class ChessGameApplication {
     }
 
     @GetMapping("/swapPiece")
-    public String swapPiece(@RequestParam(value = "row", defaultValue = "0") String row, @RequestParam(value = "col", defaultValue = "0") String col,@RequestParam(value = "newVal", defaultValue = "0") String newVal) {
+    public String swapPiece(@RequestParam(value = "rowOne", defaultValue = "0") String rowOne,
+                            @RequestParam(value = "colOne", defaultValue = "0") String colOne,
+                            @RequestParam(value = "rowTwo", defaultValue = "0") String rowTwo,
+                            @RequestParam(value = "colTwo", defaultValue = "0") String colTwo) {
         ChessBoard chessBoard = ChessBoard.getInstance();
-        int rowNum = Integer.parseInt(row);
-        int colNum = Integer.parseInt(col);
-        int newValNum = Integer.parseInt(newVal);
-        chessBoard.board[rowNum][colNum] = newValNum;
+        int rowOneNum = Integer.parseInt(rowOne);
+        int colOneNum = Integer.parseInt(colOne);
+        int rowTwoNum = Integer.parseInt(rowTwo);
+        int colTwoNum = Integer.parseInt(colTwo);
+        int pieceOne = chessBoard.board[rowOneNum][colOneNum];
+        int pieceTwo = chessBoard.board[rowTwoNum][colTwoNum];
+        chessBoard.board[rowOneNum][colOneNum] = pieceTwo;
+        chessBoard.board[rowTwoNum][colTwoNum] = pieceOne;
+
         return Arrays.deepToString(chessBoard.board);
     }
 }
